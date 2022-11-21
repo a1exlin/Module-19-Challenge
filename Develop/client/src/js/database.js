@@ -12,8 +12,20 @@ const initdb = async () =>
     },
   });
 
+// TODO: Add logic for a method that gets all the content from the database
+export const getDb = async () => { console.error('getDb not implemented');
+
+const jateDb = await openDB('jate' , 1);
+const text = jateDb.transaction('jate', 'readwrite');
+const objectStore =  text.transaction('jate');
+const req = objectStore.getAll();
+const res = await req;
+console.log("the data is saved into the jateDB" , res);
+
+};
+
 // TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => { console.error('putDb not implemented');
+export const putDb = async (id, value) => { console.error('putDb not implemented');
 
 console.log('PUT request to update the jateDB');
   // connect to DB and version we want to use
@@ -28,17 +40,6 @@ console.log('PUT request to update the jateDB');
   const res = await req;
   console.log('data saved to the jateDB', res);
 };
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => { console.error('getDb not implemented');
 
-
-const jateDb = await openDB('jate' , 1);
-const text = jateDb.transcation('jate', 'readwrite');
-const objectStore =  text.transcation('jate');
-const req = objectStore.put({id: id, value: value});
-const res = await req;
-console.log("the data is saved into the jateDB" , res);
-
-};
 
 initdb();
